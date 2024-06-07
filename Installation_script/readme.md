@@ -1,10 +1,52 @@
+## Direct installations --------------------> Make sure you have internet connection for initial instalation
+
+//Installation of required apps
+
+sudo apt-get install vim
+sudo apt-get install gcc
+sudo apt-get install net-tools
+sudo git --version
+sudo apt-get install make
+sudo apt-get upgrade
+
+//Installation of libiec61850
+
+git clone https://github.com/mz-automation/libiec61850.git
+cd libiec61850/
+make
+
+//should end with libiec61850.a
+
+sudo make install
+cd ..
+
+//Making static IP address for SSH
+
+sudo apt install dhcpcd5
+sudo systemctl enable dhcpcd
+sudo systemctl start dhcpcd
+
+sudo nano /etc/dhcpcd.conf
+
+//Write at end of opened file
+interface eth0
+static ip_address=10.90.90.3/24
+static routers=10.90.90.1
+
+
+//Restart dhcpcd
+sudo systemctl restart dhcpcd
+
+//Remove internet connection
+sudo reboot
 
 ## Script Details
 
 Instructions for using this script :
-1. wget https://github.com/KishanDESE/Powergrid_security_lab/blob/8cb835c25e31cd645ca12ef02c40cf8a0123a177/Installation_script/power_grid_setup.sh
-2. chmod +x setup.sh
-3. sudo ./setup.sh
+1. git clone https://github.com/KishanDESE/Powergrid_security_lab.git
+2. cd Powergrid_security_lab/Installation_scripts
+3. chmod +x power_grid_setup.sh
+4. sudo ./power_grid_setup.sh
 
 
 
